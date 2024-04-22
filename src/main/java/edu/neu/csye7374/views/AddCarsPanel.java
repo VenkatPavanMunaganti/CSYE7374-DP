@@ -9,22 +9,31 @@ import edu.neu.csye7374.Car;
 import edu.neu.csye7374.CarAPI;
 import edu.neu.csye7374.CarCategory;
 import edu.neu.csye7374.Factory.CarFactory;
+import edu.neu.csye7374.Manufacturer;
 import edu.neu.csye7374.fileUtil.GeneralFileUtil;
 import java.awt.Color;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import java.util.UUID;
 
 /**
  *
  * @author Pavan munaganti
  */
 public class AddCarsPanel extends javax.swing.JPanel {
+
     private List<CarAPI> carList = new ArrayList<>();
-    private static AddCarsPanel instance=null;
+    private static AddCarsPanel instance = null;
     private MainFrame mainFrameRef;
     private String CARS_FILE_NAME = "CarsData.txt";
+    private static String MFR_FILE_NAME = "MfrData.csv";
+
     /**
      * Creates new form AddCarsPanel
      */
@@ -32,17 +41,17 @@ public class AddCarsPanel extends javax.swing.JPanel {
         initComponents();
         loadData();
     }
-    
-    public static AddCarsPanel getInstance(){
-        if(instance == null){
-            instance= new AddCarsPanel();
+
+    public static AddCarsPanel getInstance() {
+        if (instance == null) {
+            instance = new AddCarsPanel();
         }
         return instance;
     }
-    
-    public List<CarAPI> getCarList(){
+
+    public List<CarAPI> getCarList() {
         return this.carList;
-    
+
     }
 
     private void loadData() {
@@ -51,8 +60,13 @@ public class AddCarsPanel extends javax.swing.JPanel {
             CarBuilder carBuilder = new CarBuilder(line);
             carList.add(carBuilder.build());
         }
-        
         populateCarsTable();
+        
+        List<String> rawManData = GeneralFileUtil.readFile(MFR_FILE_NAME);
+        carManufacturer.removeAllItems();
+        for (String line : rawManData) {
+            carManufacturer.addItem(line.strip().split(",")[0]);
+        }
     }
 
     /**
@@ -67,16 +81,21 @@ public class AddCarsPanel extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         carsTable = new javax.swing.JTable();
         jLabel6 = new javax.swing.JLabel();
-        carMfr = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        bookCreateBtn = new javax.swing.JButton();
-        carId = new javax.swing.JTextField();
+        carCreateBtn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         carName = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         carPrice = new javax.swing.JTextField();
+        carManufacturer = new javax.swing.JComboBox<>();
         carCategory = new javax.swing.JComboBox<>();
+
+        addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                formFocusGained(evt);
+            }
+        });
 
         carsTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -107,29 +126,23 @@ public class AddCarsPanel extends javax.swing.JPanel {
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel6.setText("Mfr. Name");
 
-        carMfr.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                carMfrActionPerformed(evt);
-            }
-        });
-
-        jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(204, 0, 0));
-        jLabel9.setText("Car Id");
+        jLabel9.setText("Add Your Car Here");
 
-        bookCreateBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        bookCreateBtn.setText("Create");
-        bookCreateBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+        carCreateBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        carCreateBtn.setText("Create");
+        carCreateBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                bookCreateBtnMouseEntered(evt);
+                carCreateBtnMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                bookCreateBtnMouseExited(evt);
+                carCreateBtnMouseExited(evt);
             }
         });
-        bookCreateBtn.addActionListener(new java.awt.event.ActionListener() {
+        carCreateBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bookCreateBtnActionPerformed(evt);
+                carCreateBtnActionPerformed(evt);
             }
         });
 
@@ -154,74 +167,91 @@ public class AddCarsPanel extends javax.swing.JPanel {
             }
         });
 
+        carManufacturer.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                carManufacturerMouseClicked(evt);
+            }
+        });
+        carManufacturer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                carManufacturerActionPerformed(evt);
+            }
+        });
+
         carCategory.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "suv", "sports", "minivan", "limo", "sedan" }));
+        carCategory.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                carCategoryActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(31, 31, 31)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(bookCreateBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addContainerGap()
+                        .addComponent(carCreateBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 726, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGap(31, 31, 31)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(369, 369, 369)
-                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(carName, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(carCategory, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(carId, javax.swing.GroupLayout.PREFERRED_SIZE, 587, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(carPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(65, 65, 65)
-                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(carMfr, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(33, Short.MAX_VALUE))
+                                .addComponent(carPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(65, 65, 65)
+                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(carManufacturer, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(369, 369, 369)
+                                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(carName, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(18, 18, 18)
+                                .addComponent(carCategory, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                .addContainerGap(38, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(290, 290, 290))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 725, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 783, Short.MAX_VALUE)
                     .addContainerGap()))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(334, 334, 334)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(carId, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel9))
-                .addGap(18, 18, 18)
+                .addGap(325, 325, 325)
+                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(carName, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1)
                     .addComponent(jLabel5)
                     .addComponent(carCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(carMfr, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(carPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel2)
-                        .addComponent(jLabel6)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
-                .addComponent(bookCreateBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(carPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel6)
+                    .addComponent(carManufacturer, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
+                .addComponent(carCreateBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(35, 35, 35))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(275, Short.MAX_VALUE)))
+                    .addContainerGap(280, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -254,26 +284,33 @@ public class AddCarsPanel extends javax.swing.JPanel {
 //            bookDeleteBtn.setEnabled(false);
 //        }
 
+
     }//GEN-LAST:event_carsTableMouseClicked
 
-    private void bookCreateBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bookCreateBtnMouseEntered
+    private void carCreateBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_carCreateBtnMouseEntered
         // TODO add your handling code here:
-        bookCreateBtn.setBackground(new Color(0,0,0));
-        bookCreateBtn.setForeground(new Color(255,255,255));
-    }//GEN-LAST:event_bookCreateBtnMouseEntered
+        carCreateBtn.setBackground(new Color(0, 0, 0));
+        carCreateBtn.setForeground(new Color(255, 255, 255));
+    }//GEN-LAST:event_carCreateBtnMouseEntered
 
-    private void bookCreateBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bookCreateBtnMouseExited
+    private void carCreateBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_carCreateBtnMouseExited
         // TODO add your handling code here:
-        bookCreateBtn.setBackground(new Color(255,255,255));
-        bookCreateBtn.setForeground(new Color(0, 0, 0));
-    }//GEN-LAST:event_bookCreateBtnMouseExited
+        carCreateBtn.setBackground(new Color(255, 255, 255));
+        carCreateBtn.setForeground(new Color(0, 0, 0));
+    }//GEN-LAST:event_carCreateBtnMouseExited
 
-    private void bookCreateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookCreateBtnActionPerformed
+    private void carCreateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_carCreateBtnActionPerformed
         // TODO add your handling code here:
-        int id = Integer.parseInt(carId.getText());
-        String name= carName.getText();
+        
+        int maxId = -1;
+        
+        for(CarAPI car: carList){
+           maxId = Math.max(maxId, car.getCarId());            
+        }
+        int id = maxId + 1;
+        String name = carName.getText();
         double price = Double.parseDouble(carPrice.getText());
-        String mfr = carMfr.getText();
+        String mfr = carManufacturer.getSelectedItem().toString();
         String category = carCategory.getSelectedItem().toString();
         CarCategory categoryEnumVal = CarCategory.getCarCategory(category);
 
@@ -281,25 +318,22 @@ public class AddCarsPanel extends javax.swing.JPanel {
 //            JOptionPane.showMessageDialog(this, "Car with this ID already exists");
 //            return;
 //        }
-        
-        CarBuilder carBuilder = new CarBuilder(id, name,price ,categoryEnumVal, mfr);
+        CarBuilder carBuilder = new CarBuilder(id, name, price, categoryEnumVal, mfr);
         CarAPI car = CarFactory.getInstance().getObject(carBuilder);
         carList.add((Car) car);
 //      OperatingSystem.getInstance().writeBooks();
 
         String lineToFile = id + "," + name + "," + price + "," + category + "," + mfr;
         GeneralFileUtil.writeFile(CARS_FILE_NAME, lineToFile, false);
+
         
-        carId.setText("");
         carName.setText("");
         carPrice.setText("");
-        carMfr.setText("");        
-
-//      populateCarsList();
+        
         populateCarsTable();
-        
-        
-    }//GEN-LAST:event_bookCreateBtnActionPerformed
+
+
+    }//GEN-LAST:event_carCreateBtnActionPerformed
 
     private void carNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_carNameActionPerformed
         // TODO add your handling code here:
@@ -309,16 +343,30 @@ public class AddCarsPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_carPriceActionPerformed
 
-    private void carMfrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_carMfrActionPerformed
+    private void carManufacturerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_carManufacturerActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_carMfrActionPerformed
+        
+
+    }//GEN-LAST:event_carManufacturerActionPerformed
+
+    private void carCategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_carCategoryActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_carCategoryActionPerformed
+
+    private void formFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_formFocusGained
+        // TODO add your handling code here:
+    }//GEN-LAST:event_formFocusGained
+
+    private void carManufacturerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_carManufacturerMouseClicked
+        // TODO add your handling code here:
+        loadData();
+    }//GEN-LAST:event_carManufacturerMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton bookCreateBtn;
     private javax.swing.JComboBox<String> carCategory;
-    private javax.swing.JTextField carId;
-    private javax.swing.JTextField carMfr;
+    private javax.swing.JButton carCreateBtn;
+    private javax.swing.JComboBox<String> carManufacturer;
     private javax.swing.JTextField carName;
     private javax.swing.JTextField carPrice;
     private javax.swing.JTable carsTable;
@@ -330,19 +378,19 @@ public class AddCarsPanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 
-    private void populateCarsTable(){
+    private void populateCarsTable() {
         DefaultTableModel model = (DefaultTableModel) carsTable.getModel();
         model.setRowCount(0);
-        
-        for(CarAPI car : carList){
+
+        for (CarAPI car : carList) {
             Object[] row = new Object[5];
-            
+
             String[] carString = car.toString().split(",");
-            
+
             for (int i = 0; i < 5; i++) {
                 row[i] = carString[i];
             }
-            
+
             model.addRow(row);
         }
     }
