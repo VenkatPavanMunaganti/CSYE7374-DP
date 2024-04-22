@@ -12,6 +12,7 @@ import edu.neu.csye7374.CarCategory;
 import edu.neu.csye7374.Employee;
 import edu.neu.csye7374.Factory.CarFactory;
 import edu.neu.csye7374.Factory.EmployeeFactory;
+import edu.neu.csye7374.fileUtil.GeneralFileUtil;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +26,7 @@ import javax.swing.table.DefaultTableModel;
 public class AddEmployeePanel extends javax.swing.JPanel {
     private List<Employee> employeeList = new ArrayList<>();
     private static AddEmployeePanel instance = null;
+    private static String EMP_FILE_NAME = "EmpData.csv";
     /**
      * Creates new form AddEmployeePanel
      */
@@ -298,6 +300,8 @@ public class AddEmployeePanel extends javax.swing.JPanel {
         Employee empl = EmployeeFactory.getInstance().getObject(emplBuilder);
         
         employeeList.add((Employee) empl);
+        String lineToFile = id + "," + firstName + "," + lastName + "," + age + "," + wage;
+        GeneralFileUtil.writeToFile(EMP_FILE_NAME, lineToFile, false);
   
         empId.setText("");
         empFirstName.setText("");
