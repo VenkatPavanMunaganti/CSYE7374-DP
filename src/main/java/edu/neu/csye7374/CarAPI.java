@@ -11,4 +11,5 @@ public interface CarAPI {
 
     double getCarPrice();
 
+    public int getCarId();
 }

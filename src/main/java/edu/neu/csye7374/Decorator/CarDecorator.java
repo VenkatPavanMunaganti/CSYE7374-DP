@@ -46,4 +46,9 @@ public class CarDecorator implements CarAPI {
 	public void setCarManufacturer(String bikeManufacturer) {
 
 	}
+
+    @Override
+    public int getCarId() {
+        return this.decoratedCar.getCarId();
+    }
 }

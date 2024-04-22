@@ -4,6 +4,8 @@
  */
 package edu.neu.csye7374.views;
 
+import javax.swing.JSplitPane;
+
 /**
  *
  * @author Pavan munaganti
@@ -31,7 +33,7 @@ public class MainFrame extends javax.swing.JFrame {
         addCars = new javax.swing.JButton();
         addManufacturers = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        orderBtn = new javax.swing.JButton();
         MainContentPanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -57,10 +59,10 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
-        jButton4.setText("Order");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        orderBtn.setText("Order");
+        orderBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                orderBtnActionPerformed(evt);
             }
         });
 
@@ -74,7 +76,7 @@ public class MainFrame extends javax.swing.JFrame {
                     .addComponent(addCars, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(addManufacturers, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(orderBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         MenuPanelLayout.setVerticalGroup(
@@ -85,7 +87,7 @@ public class MainFrame extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(addCars)
                 .addGap(18, 18, 18)
-                .addComponent(jButton4)
+                .addComponent(orderBtn)
                 .addGap(18, 18, 18)
                 .addComponent(jButton3)
                 .addContainerGap(446, Short.MAX_VALUE))
@@ -129,12 +131,14 @@ public class MainFrame extends javax.swing.JFrame {
     private void addCarsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addCarsActionPerformed
         // TODO add your handling code here:
         AddCarsPanel addCarsPanel= AddCarsPanel.getInstance();
+        addCarsPanel.setMainFrame(this);
         mainSplitPanel.setRightComponent(addCarsPanel);
     }//GEN-LAST:event_addCarsActionPerformed
 
     private void addManufacturersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addManufacturersActionPerformed
         // TODO add your handling code here:
         AddMfrPanel mfrPanel = AddMfrPanel.getInstance();
+        mfrPanel.setMainFrame(this);
         mainSplitPanel.setRightComponent(mfrPanel);
         
     }//GEN-LAST:event_addManufacturersActionPerformed
@@ -143,9 +147,12 @@ public class MainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void orderBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_orderBtnActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
+        OrderPanel orderPanel = OrderPanel.getInstance();
+        orderPanel.setMainFrame(this);
+        mainSplitPanel.setRightComponent(orderPanel);
+    }//GEN-LAST:event_orderBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -188,7 +195,11 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JButton addCars;
     private javax.swing.JButton addManufacturers;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JSplitPane mainSplitPanel;
+    private javax.swing.JButton orderBtn;
     // End of variables declaration//GEN-END:variables
+
+    public JSplitPane getMainSplitPanel() {
+        return mainSplitPanel;
+    }
 }

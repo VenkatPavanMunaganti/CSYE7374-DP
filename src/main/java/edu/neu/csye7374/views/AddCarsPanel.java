@@ -20,8 +20,9 @@ import javax.swing.table.DefaultTableModel;
  * @author Pavan munaganti
  */
 public class AddCarsPanel extends javax.swing.JPanel {
-    private List<Car> carList = new ArrayList<>();
+    private List<CarAPI> carList = new ArrayList<>();
     private static AddCarsPanel instance=null;
+    private MainFrame mainFrameRef;
     /**
      * Creates new form AddCarsPanel
      */
@@ -34,6 +35,10 @@ public class AddCarsPanel extends javax.swing.JPanel {
             instance= new AddCarsPanel();
         }
         return instance;
+    }
+    
+    public List<CarAPI> getCarList(){
+        return this.carList;
     }
 
     /**
@@ -266,7 +271,7 @@ public class AddCarsPanel extends javax.swing.JPanel {
         CarBuilder carBuilder = new CarBuilder(id, name,price ,categoryEnumVal, mfr);
         CarAPI car = CarFactory.getInstance().getObject(carBuilder);
         carList.add((Car) car);
-//        OperatingSystem.getInstance().writeBooks();
+//      OperatingSystem.getInstance().writeBooks();
 
         carId.setText("");
         carName.setText("");
@@ -274,7 +279,7 @@ public class AddCarsPanel extends javax.swing.JPanel {
         carMfr.setText("");
         
 
-//        populateCarsList();
+//      populateCarsList();
         populateCarsTable();
     }//GEN-LAST:event_bookCreateBtnActionPerformed
 
@@ -308,11 +313,10 @@ public class AddCarsPanel extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     private void populateCarsTable(){
-        
         DefaultTableModel model = (DefaultTableModel) carsTable.getModel();
         model.setRowCount(0);
         
-        for(Car car : carList){
+        for(CarAPI car : carList){
             Object[] row = new Object[5];
             
             String[] carString = car.toString().split(",");
@@ -323,5 +327,9 @@ public class AddCarsPanel extends javax.swing.JPanel {
             
             model.addRow(row);
         }
+    }
+
+    void setMainFrame(MainFrame aThis) {
+        this.mainFrameRef = aThis;
     }
 }
