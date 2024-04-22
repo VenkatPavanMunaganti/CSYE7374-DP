@@ -73,7 +73,7 @@ public class AddMfrPanel extends javax.swing.JPanel {
         mfrTable = new javax.swing.JTable();
         jLabel6 = new javax.swing.JLabel();
         estYear = new javax.swing.JTextField();
-        bookCreateBtn = new javax.swing.JButton();
+        carCreateBtn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         mfrName = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
@@ -114,19 +114,19 @@ public class AddMfrPanel extends javax.swing.JPanel {
             }
         });
 
-        bookCreateBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        bookCreateBtn.setText("Create");
-        bookCreateBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+        carCreateBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        carCreateBtn.setText("Create");
+        carCreateBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                bookCreateBtnMouseEntered(evt);
+                carCreateBtnMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                bookCreateBtnMouseExited(evt);
+                carCreateBtnMouseExited(evt);
             }
         });
-        bookCreateBtn.addActionListener(new java.awt.event.ActionListener() {
+        carCreateBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bookCreateBtnActionPerformed(evt);
+                carCreateBtnActionPerformed(evt);
             }
         });
 
@@ -167,7 +167,7 @@ public class AddMfrPanel extends javax.swing.JPanel {
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(mfrName, javax.swing.GroupLayout.PREFERRED_SIZE, 579, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(bookCreateBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 665, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(carCreateBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 665, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(38, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
@@ -189,7 +189,7 @@ public class AddMfrPanel extends javax.swing.JPanel {
                     .addComponent(estYear, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6))
                 .addGap(32, 32, 32)
-                .addComponent(bookCreateBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(carCreateBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(47, 47, 47))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
@@ -230,19 +230,19 @@ public class AddMfrPanel extends javax.swing.JPanel {
 
     }//GEN-LAST:event_mfrTableMouseClicked
 
-    private void bookCreateBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bookCreateBtnMouseEntered
+    private void carCreateBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_carCreateBtnMouseEntered
         // TODO add your handling code here:
-        bookCreateBtn.setBackground(new Color(0,0,0));
-        bookCreateBtn.setForeground(new Color(255,255,255));
-    }//GEN-LAST:event_bookCreateBtnMouseEntered
+        carCreateBtn.setBackground(new Color(0,0,0));
+        carCreateBtn.setForeground(new Color(255,255,255));
+    }//GEN-LAST:event_carCreateBtnMouseEntered
 
-    private void bookCreateBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bookCreateBtnMouseExited
+    private void carCreateBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_carCreateBtnMouseExited
         // TODO add your handling code here:
-        bookCreateBtn.setBackground(new Color(255,255,255));
-        bookCreateBtn.setForeground(new Color(0, 0, 0));
-    }//GEN-LAST:event_bookCreateBtnMouseExited
+        carCreateBtn.setBackground(new Color(255,255,255));
+        carCreateBtn.setForeground(new Color(0, 0, 0));
+    }//GEN-LAST:event_carCreateBtnMouseExited
 
-    private void bookCreateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookCreateBtnActionPerformed
+    private void carCreateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_carCreateBtnActionPerformed
         // TODO add your handling code here:
         String name= mfrName.getText();
         int noOfCarsSold = Integer.parseInt(carsSold.getText());
@@ -270,7 +270,7 @@ public class AddMfrPanel extends javax.swing.JPanel {
 
 //        populateCarsList();
         populateMfrTable();
-    }//GEN-LAST:event_bookCreateBtnActionPerformed
+    }//GEN-LAST:event_carCreateBtnActionPerformed
 
     private void mfrNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mfrNameActionPerformed
         // TODO add your handling code here:
@@ -286,7 +286,7 @@ public class AddMfrPanel extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton bookCreateBtn;
+    private javax.swing.JButton carCreateBtn;
     private javax.swing.JTextField carsSold;
     private javax.swing.JTextField estYear;
     private javax.swing.JLabel jLabel1;
