@@ -1,0 +1,52 @@
+1,Talon,600.0,RoadBikes,GIANT BIKES
+2,Fuel EX,750.0,HybridBikes,TREK BIKES
+3,Atroz,1200.0,RoadBikes,DIAMONDBACK BIKES
+4,Stinson,699.0,CrossBikes,MARIN BIKES
+1,Talon,600.0,RoadBikes,GIANT BIKES
+2,Fuel EX,750.0,HybridBikes,TREK BIKES
+3,Atroz,1200.0,RoadBikes,DIAMONDBACK BIKES
+4,Stinson,699.0,CrossBikes,MARIN BIKES
+1,Talon,600.0,RoadBikes,GIANT BIKES
+2,Fuel EX,750.0,HybridBikes,TREK BIKES
+3,Atroz,1200.0,RoadBikes,DIAMONDBACK BIKES
+4,Stinson,699.0,CrossBikes,MARIN BIKES
+1,Talon,600.0,RoadBikes,GIANT BIKES
+2,Fuel EX,750.0,HybridBikes,TREK BIKES
+3,Atroz,1200.0,RoadBikes,DIAMONDBACK BIKES
+4,Stinson,699.0,CrossBikes,MARIN BIKES
+1,Talon,600.0,RoadBikes,GIANT BIKES
+2,Fuel EX,750.0,HybridBikes,TREK BIKES
+3,Atroz,1200.0,RoadBikes,DIAMONDBACK BIKES
+4,Stinson,699.0,CrossBikes,MARIN BIKES
+1,Talon,600.0,RoadBikes,GIANT BIKES
+2,Fuel EX,750.0,HybridBikes,TREK BIKES
+3,Atroz,1200.0,RoadBikes,DIAMONDBACK BIKES
+4,Stinson,699.0,CrossBikes,MARIN BIKES
+1,Talon,600.0,RoadBikes,GIANT BIKES
+2,Fuel EX,750.0,HybridBikes,TREK BIKES
+3,Atroz,1200.0,RoadBikes,DIAMONDBACK BIKES
+4,Stinson,699.0,CrossBikes,MARIN BIKES
+1,Talon,600.0,RoadBikes,GIANT BIKES
+2,Fuel EX,750.0,HybridBikes,TREK BIKES
+3,Atroz,1200.0,RoadBikes,DIAMONDBACK BIKES
+4,Stinson,699.0,CrossBikes,MARIN BIKES
+1,Talon,600.0,RoadBikes,GIANT BIKES
+2,Fuel EX,750.0,HybridBikes,TREK BIKES
+3,Atroz,1200.0,RoadBikes,DIAMONDBACK BIKES
+4,Stinson,699.0,CrossBikes,MARIN BIKES
+1,Talon,600.0,RoadBikes,GIANT BIKES
+2,Fuel EX,750.0,HybridBikes,TREK BIKES
+3,Atroz,1200.0,RoadBikes,DIAMONDBACK BIKES
+4,Stinson,699.0,CrossBikes,MARIN BIKES
+1,Talon,600.0,RoadBikes,GIANT BIKES
+2,Fuel EX,750.0,HybridBikes,TREK BIKES
+3,Atroz,1200.0,RoadBikes,DIAMONDBACK BIKES
+4,Stinson,699.0,CrossBikes,MARIN BIKES
+1,Talon,600.0,Sports,GIANT BIKES
+2,Fuel EX,750.0,Sedan,TREK BIKES
+3,Atroz,1200.0,Sports,DIAMONDBACK BIKES
+4,Stinson,699.0,Limo,MARIN BIKES
+1,Talon,600.0,Sports,GIANT BIKES
+2,Fuel EX,750.0,Sedan,TREK BIKES
+3,Atroz,1200.0,Sports,DIAMONDBACK BIKES
+4,Stinson,699.0,Limo,MARIN BIKES

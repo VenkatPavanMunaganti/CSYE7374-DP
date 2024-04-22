@@ -1,0 +1,24 @@
+1,Porsche-811,115000.0,Sports,Porsche
+2,Fuel EX,750.0,Sedan,TREK BIKES
+3,Atroz,1200.0,Sports,DIAMONDBACK BIKES
+4,Stinson,699.0,Limo,MARIN BIKES
+1,Porsche-811,115000.0,Sports,Porsche
+2,Fuel EX,750.0,Sedan,TREK BIKES
+3,Atroz,1200.0,Sports,DIAMONDBACK BIKES
+4,Stinson,699.0,Limo,MARIN BIKES
+1,Porsche-811,115000.0,Sports,Porsche
+2,Fuel EX,750.0,Sedan,TREK BIKES
+3,Atroz,1200.0,Sports,DIAMONDBACK BIKES
+4,Stinson,699.0,Limo,MARIN BIKES
+1,Porsche-811,115000.0,Sports,Porsche
+2,Fuel EX,750.0,Sedan,TREK BIKES
+3,Atroz,1200.0,Sports,DIAMONDBACK BIKES
+4,Stinson,699.0,Limo,MARIN BIKES
+1,Porsche-811,115000.0,Sports,Porsche
+2,Fuel EX,750.0,Sedan,TREK BIKES
+3,Atroz,1200.0,Sports,DIAMONDBACK BIKES
+4,Stinson,699.0,Limo,MARIN BIKES
+1,Porsche-811,115000.0,Sports,Porsche
+2,Fuel EX,750.0,Sedan,TREK BIKES
+3,Atroz,1200.0,Sports,DIAMONDBACK BIKES
+4,Stinson,699.0,Limo,MARIN BIKES
