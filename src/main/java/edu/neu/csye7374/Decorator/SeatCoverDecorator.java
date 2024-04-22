@@ -3,9 +3,9 @@ package edu.neu.csye7374.Decorator;
 import edu.neu.csye7374.Car;
 import edu.neu.csye7374.CarAPI;
 
-public class AutomaticGearDecorator extends CarDecorator {
+public class SeatCoverDecorator extends CarDecorator {
 
-    public AutomaticGearDecorator(CarAPI decoratedBike) {
+    public SeatCoverDecorator(CarAPI decoratedBike) {
         super(decoratedBike);
         // TODO Auto-generated constructor stub
     }
@@ -13,7 +13,7 @@ public class AutomaticGearDecorator extends CarDecorator {
     @Override
     public String carDescription() {
         // TODO Auto-generated method stub
-        return decoratedCar.carDescription() + ", Added Gears to the bike";
+        return decoratedCar.carDescription() + ", Added seat covers to the car order";
     }
 
     @Override
@@ -24,7 +24,7 @@ public class AutomaticGearDecorator extends CarDecorator {
 
     public double getCarPrice() {
         Car b = Car.class.cast(decoratedCar);
-        return b.getCarPrice() + 100;
+        return b.getCarPrice() + 200;
     }
 
 }

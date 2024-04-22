@@ -3,6 +3,7 @@ package edu.neu.csye7374.Facade;
 import edu.neu.csye7374.CarAPI;
 import edu.neu.csye7374.Decorator.CarDecorator;
 import edu.neu.csye7374.Decorator.DashcamDecorator;
+import edu.neu.csye7374.Decorator.SeatCoverDecorator;
 import edu.neu.csye7374.Observer.CarOrder;
 
 public class CarOrderFacade {
@@ -29,8 +30,11 @@ public class CarOrderFacade {
 	public CarOrder carOrder() {
 		CarOrder order = new CarOrder();
 		CarDecorator dashcamCar = new DashcamDecorator(car);
+                CarDecorator seatCoverCar = new SeatCoverDecorator(car);
 		System.out.println(dashcamCar);
+                System.out.println(seatCoverCar);
 		order.addCar(dashcamCar);
+                order.addCar(seatCoverCar);
 		return order;
 	}
 

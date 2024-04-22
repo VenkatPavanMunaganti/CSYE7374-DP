@@ -12,7 +12,7 @@ public class DashcamDecorator extends CarDecorator {
     @Override
     public String carDescription() {
         // TODO Auto-generated method stub
-        return decoratedCar.carDescription() + ", Added Helmet to the order";
+        return decoratedCar.carDescription() + ", Added Dashcam to the car order";
     }
 
     @Override
@@ -23,7 +23,7 @@ public class DashcamDecorator extends CarDecorator {
 
     public double getCarPrice() {
         Car b = Car.class.cast(decoratedCar);
-        return b.getCarPrice() + 25;
+        return b.getCarPrice() + 560;
     }
 
 }
