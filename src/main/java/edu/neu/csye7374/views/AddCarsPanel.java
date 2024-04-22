@@ -44,6 +44,7 @@ public class AddCarsPanel extends javax.swing.JPanel {
         return this.carList;
     
     }
+
     private void loadData() {
         List<String> rawData = GeneralFileUtil.readFile(CARS_FILE_NAME);
         for (String line : rawData) {

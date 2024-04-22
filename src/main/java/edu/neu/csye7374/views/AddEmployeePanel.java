@@ -32,6 +32,7 @@ public class AddEmployeePanel extends javax.swing.JPanel {
      */
     public AddEmployeePanel() {
         initComponents();
+        loadData();
     }
     
     public static AddEmployeePanel getInstance(){
@@ -40,6 +41,16 @@ public class AddEmployeePanel extends javax.swing.JPanel {
         }
         
         return instance;
+    }
+
+    private void loadData() {
+        List<String> rawData = GeneralFileUtil.readFile(EMP_FILE_NAME);
+        for (String line : rawData) {
+            EmployeeBuilder employeeBuilder = new EmployeeBuilder(line);
+            employeeList.add(employeeBuilder.build());
+        }
+        
+        populateEmployeeTable();
     }
 
     /**
