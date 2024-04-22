@@ -21,12 +21,19 @@ import javax.swing.table.DefaultTableModel;
  */
 public class AddCarsPanel extends javax.swing.JPanel {
     private List<Car> carList = new ArrayList<>();
-
+    private static AddCarsPanel instance=null;
     /**
      * Creates new form AddCarsPanel
      */
     public AddCarsPanel() {
         initComponents();
+    }
+    
+    public static AddCarsPanel getInstance(){
+        if(instance == null){
+            instance= new AddCarsPanel();
+        }
+        return instance;
     }
 
     /**

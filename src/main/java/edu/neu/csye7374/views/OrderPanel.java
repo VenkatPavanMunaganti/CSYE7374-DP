@@ -8,12 +8,12 @@ package edu.neu.csye7374.views;
  *
  * @author zainabkhokawala
  */
-public class StartOrderPanel extends javax.swing.JPanel {
+public class OrderPanel extends javax.swing.JPanel {
 
     /**
      * Creates new form StartOrderPanel
      */
-    public StartOrderPanel() {
+    public OrderPanel() {
         initComponents();
     }
 
