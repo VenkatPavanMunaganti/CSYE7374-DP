@@ -9,6 +9,7 @@ import edu.neu.csye7374.Car;
 import edu.neu.csye7374.CarAPI;
 import edu.neu.csye7374.CarCategory;
 import edu.neu.csye7374.Factory.CarFactory;
+import edu.neu.csye7374.fileUtil.GeneralFileUtil;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +23,7 @@ import javax.swing.table.DefaultTableModel;
 public class AddCarsPanel extends javax.swing.JPanel {
     private List<Car> carList = new ArrayList<>();
     private static AddCarsPanel instance=null;
+    private String CARS_FILE_NAME = "CarsData.txt";
     /**
      * Creates new form AddCarsPanel
      */
@@ -268,14 +270,18 @@ public class AddCarsPanel extends javax.swing.JPanel {
         carList.add((Car) car);
 //        OperatingSystem.getInstance().writeBooks();
 
+        String lineToFile = id + "," + name + "," + price + "," + category + "," + mfr;
+        GeneralFileUtil.writeToFile(CARS_FILE_NAME, lineToFile, false);
+        
         carId.setText("");
         carName.setText("");
         carPrice.setText("");
-        carMfr.setText("");
-        
+        carMfr.setText("");        
 
 //        populateCarsList();
         populateCarsTable();
+        
+        
     }//GEN-LAST:event_bookCreateBtnActionPerformed
 
     private void carNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_carNameActionPerformed
