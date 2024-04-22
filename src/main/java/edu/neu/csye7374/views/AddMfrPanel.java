@@ -10,6 +10,7 @@ import edu.neu.csye7374.CarAPI;
 import edu.neu.csye7374.Manufacturer;
 import edu.neu.csye7374.CarCategory;
 import edu.neu.csye7374.Factory.CarFactory;
+import edu.neu.csye7374.fileUtil.GeneralFileUtil;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +24,9 @@ import javax.swing.table.DefaultTableModel;
 public class AddMfrPanel extends javax.swing.JPanel {
     private List<Manufacturer> mfrList = new ArrayList<>();
     private static AddMfrPanel instance=null;
+
     private MainFrame mainFrameRef;
+    private static String MFR_FILE_NAME = "MfrData.csv"; 
 
         
     /**
@@ -243,6 +246,9 @@ public class AddMfrPanel extends javax.swing.JPanel {
            .setNoOfCarsReleased(noOfCarsSold);
         
         mfrList.add(man);
+        
+        String lineToFile = name + "," + noOfCarsSold + "," + establishedYear;
+        GeneralFileUtil.writeToFile(MFR_FILE_NAME, lineToFile, false);
         
         mfrName.setText("");
         carsSold.setText("");

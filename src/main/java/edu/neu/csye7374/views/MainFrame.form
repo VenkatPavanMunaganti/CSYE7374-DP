@@ -61,7 +61,12 @@
                           <Component id="addCars" alignment="0" max="32767" attributes="0"/>
                           <Component id="addManufacturers" alignment="0" max="32767" attributes="0"/>
                           <Component id="jButton3" alignment="0" max="32767" attributes="0"/>
+<<<<<<< HEAD
                           <Component id="orderBtn" alignment="0" max="32767" attributes="0"/>
+=======
+                          <Component id="jButton4" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jButton1" alignment="0" max="32767" attributes="0"/>
+>>>>>>> 5113b4033ed9507aad9fa2266c9774b9cb98e6de
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -78,7 +83,9 @@
                       <Component id="orderBtn" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="jButton3" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="446" max="32767" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="400" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -114,6 +121,14 @@
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="orderBtnActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="jButton1">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Employee"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>
