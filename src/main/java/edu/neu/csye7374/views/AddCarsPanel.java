@@ -21,8 +21,9 @@ import javax.swing.table.DefaultTableModel;
  * @author Pavan munaganti
  */
 public class AddCarsPanel extends javax.swing.JPanel {
-    private List<Car> carList = new ArrayList<>();
+    private List<CarAPI> carList = new ArrayList<>();
     private static AddCarsPanel instance=null;
+    private MainFrame mainFrameRef;
     private String CARS_FILE_NAME = "CarsData.txt";
     /**
      * Creates new form AddCarsPanel
@@ -39,6 +40,10 @@ public class AddCarsPanel extends javax.swing.JPanel {
         return instance;
     }
     
+    public List<CarAPI> getCarList(){
+        return this.carList;
+    
+    }
     private void loadData() {
         List<String> rawData = GeneralFileUtil.readFile(CARS_FILE_NAME);
         for (String line : rawData) {
@@ -279,7 +284,7 @@ public class AddCarsPanel extends javax.swing.JPanel {
         CarBuilder carBuilder = new CarBuilder(id, name,price ,categoryEnumVal, mfr);
         CarAPI car = CarFactory.getInstance().getObject(carBuilder);
         carList.add((Car) car);
-//        OperatingSystem.getInstance().writeBooks();
+//      OperatingSystem.getInstance().writeBooks();
 
         String lineToFile = id + "," + name + "," + price + "," + category + "," + mfr;
         GeneralFileUtil.writeFile(CARS_FILE_NAME, lineToFile, false);
@@ -289,7 +294,7 @@ public class AddCarsPanel extends javax.swing.JPanel {
         carPrice.setText("");
         carMfr.setText("");        
 
-//        populateCarsList();
+//      populateCarsList();
         populateCarsTable();
         
         
@@ -325,11 +330,10 @@ public class AddCarsPanel extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     private void populateCarsTable(){
-        
         DefaultTableModel model = (DefaultTableModel) carsTable.getModel();
         model.setRowCount(0);
         
-        for(Car car : carList){
+        for(CarAPI car : carList){
             Object[] row = new Object[5];
             
             String[] carString = car.toString().split(",");
@@ -340,5 +344,9 @@ public class AddCarsPanel extends javax.swing.JPanel {
             
             model.addRow(row);
         }
+    }
+
+    void setMainFrame(MainFrame aThis) {
+        this.mainFrameRef = aThis;
     }
 }

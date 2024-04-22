@@ -24,6 +24,8 @@ import javax.swing.table.DefaultTableModel;
 public class AddMfrPanel extends javax.swing.JPanel {
     private List<Manufacturer> mfrList = new ArrayList<>();
     private static AddMfrPanel instance=null;
+
+    private MainFrame mainFrameRef;
     private static String MFR_FILE_NAME = "MfrData.csv"; 
 
         
@@ -39,6 +41,10 @@ public class AddMfrPanel extends javax.swing.JPanel {
             instance= new AddMfrPanel();
         }
         return instance;
+    }
+    
+    void setMainFrame(MainFrame aThis) {
+        this.mainFrameRef = aThis;
     }
 
     /**

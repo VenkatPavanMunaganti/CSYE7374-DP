@@ -46,4 +46,9 @@ public class ManufacturerObjectAdapter implements CarAPI {
         this.car.setCarManufacturer(carManufacturer);
     }
 
+    @Override
+    public int getCarId() {
+        return this.car.getCarId();
+    }
+
 }
