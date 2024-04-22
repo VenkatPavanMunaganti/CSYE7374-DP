@@ -9,7 +9,7 @@ import edu.neu.csye7374.Builder.CarBuilder;
 import edu.neu.csye7374.Builder.EmployeeBuilder;
 import edu.neu.csye7374.Command.Invoker;
 import edu.neu.csye7374.Decorator.CarDecorator;
-import edu.neu.csye7374.Decorator.AutomaticGearDecorator;
+import edu.neu.csye7374.Decorator.SeatCoverDecorator;
 import edu.neu.csye7374.Decorator.Insurance;
 import edu.neu.csye7374.Facade.CarDeliveryType;
 import edu.neu.csye7374.Facade.CarOrderFacade;
@@ -181,7 +181,7 @@ public class CarDealership implements CarDealershipAPI {
 
         carBuilder = new CarBuilder(2, "Fuel EX", 750, CarCategory.Sedan, "TREK BIKES");
         car = CarFactory.getInstance().getObject(carBuilder);
-        CarDecorator gearBike = new AutomaticGearDecorator(car);
+        CarDecorator gearBike = new SeatCoverDecorator(car);
         System.out.println(gearBike);
         order.addCar(gearBike);
         System.out.println("");

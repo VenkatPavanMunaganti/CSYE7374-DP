@@ -23,6 +23,6 @@ public class Insurance extends CarDecorator {
 
     public double getCarPrice() {
         Car b = Car.class.cast(decoratedCar);
-        return b.getCarPrice() + 20;
+        return b.getCarPrice() + 250;
     }
 }
