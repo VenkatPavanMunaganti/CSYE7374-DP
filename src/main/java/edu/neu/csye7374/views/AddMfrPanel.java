@@ -22,12 +22,21 @@ import javax.swing.table.DefaultTableModel;
  */
 public class AddMfrPanel extends javax.swing.JPanel {
     private List<Manufacturer> mfrList = new ArrayList<>();
+    private static AddMfrPanel instance=null;
 
+        
     /**
      * Creates new form AddCarsPanel
      */
     public AddMfrPanel() {
         initComponents();
+    }
+    
+    public static AddMfrPanel getInstance(){
+        if(instance == null){
+            instance= new AddMfrPanel();
+        }
+        return instance;
     }
 
     /**
