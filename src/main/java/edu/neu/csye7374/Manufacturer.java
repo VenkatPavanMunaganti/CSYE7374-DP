@@ -26,6 +26,13 @@ public class Manufacturer implements Cloneable {
         this.noOfBikesSold = noOfBikesSold;
     }
 
+    public void setValues(String line) {
+        String[] values = line.split(",");
+        this.setManufacturerName(values[0]);
+        this.setNoOfCarsReleased(Integer.parseInt(values[1]));
+        this.setManufacturingYear(Integer.parseInt(values[2]));
+    }
+
     public String getManufacturerName() {
         return manufacturerName;
     }

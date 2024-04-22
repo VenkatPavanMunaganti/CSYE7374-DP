@@ -34,6 +34,7 @@ public class AddMfrPanel extends javax.swing.JPanel {
      */
     public AddMfrPanel() {
         initComponents();
+        loadData();
     }
     
     public static AddMfrPanel getInstance(){
@@ -41,6 +42,18 @@ public class AddMfrPanel extends javax.swing.JPanel {
             instance= new AddMfrPanel();
         }
         return instance;
+    }
+
+    private void loadData() {
+        List<String> rawData = GeneralFileUtil.readFile(MFR_FILE_NAME);
+        for (String line : rawData) {
+            Manufacturer manufacturer = Manufacturer.getInstance();
+            Manufacturer clone = manufacturer.clone();
+            clone.setValues(line);
+            mfrList.add(clone);
+        }
+        
+        populateMfrTable();
     }
     
     void setMainFrame(MainFrame aThis) {
