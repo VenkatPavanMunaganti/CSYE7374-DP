@@ -30,6 +30,7 @@ public class AddCarsPanel extends javax.swing.JPanel {
      */
     public AddCarsPanel() {
         initComponents();
+        loadData();
     }
     
     public static AddCarsPanel getInstance(){
@@ -41,6 +42,16 @@ public class AddCarsPanel extends javax.swing.JPanel {
     
     public List<CarAPI> getCarList(){
         return this.carList;
+    
+    }
+    private void loadData() {
+        List<String> rawData = GeneralFileUtil.readFile(CARS_FILE_NAME);
+        for (String line : rawData) {
+            CarBuilder carBuilder = new CarBuilder(line);
+            carList.add(carBuilder.build());
+        }
+        
+        populateCarsTable();
     }
 
     /**
@@ -276,7 +287,7 @@ public class AddCarsPanel extends javax.swing.JPanel {
 //      OperatingSystem.getInstance().writeBooks();
 
         String lineToFile = id + "," + name + "," + price + "," + category + "," + mfr;
-        GeneralFileUtil.writeToFile(CARS_FILE_NAME, lineToFile, false);
+        GeneralFileUtil.writeFile(CARS_FILE_NAME, lineToFile, false);
         
         carId.setText("");
         carName.setText("");

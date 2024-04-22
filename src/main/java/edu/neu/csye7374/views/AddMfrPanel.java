@@ -248,7 +248,7 @@ public class AddMfrPanel extends javax.swing.JPanel {
         mfrList.add(man);
         
         String lineToFile = name + "," + noOfCarsSold + "," + establishedYear;
-        GeneralFileUtil.writeToFile(MFR_FILE_NAME, lineToFile, false);
+        GeneralFileUtil.writeFile(MFR_FILE_NAME, lineToFile, false);
         
         mfrName.setText("");
         carsSold.setText("");

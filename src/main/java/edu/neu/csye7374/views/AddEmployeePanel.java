@@ -301,7 +301,7 @@ public class AddEmployeePanel extends javax.swing.JPanel {
         
         employeeList.add((Employee) empl);
         String lineToFile = id + "," + firstName + "," + lastName + "," + age + "," + wage;
-        GeneralFileUtil.writeToFile(EMP_FILE_NAME, lineToFile, false);
+        GeneralFileUtil.writeFile(EMP_FILE_NAME, lineToFile, false);
   
         empId.setText("");
         empFirstName.setText("");
