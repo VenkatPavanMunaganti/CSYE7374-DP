@@ -77,6 +77,7 @@ public class OrderPanel extends javax.swing.JPanel {
         rentRBtn = new javax.swing.JRadioButton();
         pickupRBtn = new javax.swing.JRadioButton();
         deliveryRBtn = new javax.swing.JRadioButton();
+        jLabel10 = new javax.swing.JLabel();
 
         setMinimumSize(new java.awt.Dimension(793, 581));
         setPreferredSize(new java.awt.Dimension(793, 581));
@@ -190,6 +191,11 @@ public class OrderPanel extends javax.swing.JPanel {
         deliveryOptions.add(deliveryRBtn);
         deliveryRBtn.setText("Delivery");
 
+        jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(204, 0, 0));
+        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel10.setText("Add Manufacturer");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -204,7 +210,10 @@ public class OrderPanel extends javax.swing.JPanel {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 781, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(carsRefreshBtn))
+                        .addComponent(jLabel10)
+                        .addGap(216, 216, 216)
+                        .addComponent(carsRefreshBtn)
+                        .addGap(10, 10, 10))
                     .addComponent(selectCar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -235,9 +244,11 @@ public class OrderPanel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(carsRefreshBtn)
-                .addGap(11, 11, 11)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10)
+                    .addComponent(carsRefreshBtn))
+                .addGap(28, 28, 28)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(selectCar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(32, 32, 32)
@@ -257,7 +268,7 @@ public class OrderPanel extends javax.swing.JPanel {
                     .addComponent(insurance)
                     .addComponent(dashcam)
                     .addComponent(seatcovers))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
                 .addComponent(applyDecoratorsAndNext, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(36, 36, 36))
         );
@@ -314,7 +325,6 @@ public class OrderPanel extends javax.swing.JPanel {
         if(selectedCar == null){
             JOptionPane.showMessageDialog(this, "Please select a car before proceeding");
         }else{
-            System.out.println("Car before command: "+ this.selectedCar);
             ButtonModel purchaseOptionsSelection= purchaseOptions.getSelection();
             if(purchaseOptionsSelection != null){
                 Invoker invoker= new Invoker();
@@ -334,26 +344,20 @@ public class OrderPanel extends javax.swing.JPanel {
                     invoker.placeCarOrders(selectedCars);
                 }
             }
-            System.out.println("Car after command: "+ this.selectedCar);
             
             CarOrderFacade orderFacade = new CarOrderFacade(selectedCar);
             this.currentOrder= orderFacade.carOrder();
             this.selectedCar = orderFacade.getCar();
             
-            System.out.println("before setting delivery option: "+ this.currentOrder);
             ButtonModel deliveryOptionsSelection= deliveryOptions.getSelection();
             if(deliveryOptionsSelection != null){
                 String val= "";
                 if(pickupRBtn.isSelected()){
-                    System.out.println("in set pickup");
                     this.currentOrder.setCarDeliveryType(CarDeliveryType.Pickup);
                 }else{
-                    System.out.println("in set devliery");
                     this.currentOrder.setCarDeliveryType(CarDeliveryType.Delivery);
-                    System.out.println("After setting delivery"+ currentOrder.getCarDeliveryType());
                 }
             }
-            System.out.println("after setting delivery option: "+ this.currentOrder);
             
             if(dashcam.isSelected()){
                 CarDecorator decoratedCar= new DashcamDecorator(selectedCar);
@@ -366,7 +370,6 @@ public class OrderPanel extends javax.swing.JPanel {
             }
             
             
-            System.out.println("Current order at the end"+ this.currentOrder.getCarDeliveryType());
             OrderSummary os= OrderSummary.getInstance();
             os.setMainFrame(mainFrameRef);
             os.setActiveCar(this.selectedCar);
@@ -429,6 +432,7 @@ public class OrderPanel extends javax.swing.JPanel {
     private javax.swing.JRadioButton deliveryRBtn;
     private javax.swing.JCheckBox insurance;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
@@ -444,7 +448,6 @@ public class OrderPanel extends javax.swing.JPanel {
         DefaultTableModel model = (DefaultTableModel) carsTable.getModel();
         model.setRowCount(0);
         List<CarAPI> carList= AddCarsPanel.getInstance().getCarList();
-        System.out.println(carList);
         for(CarAPI car : carList){
             Object[] row = new Object[6];
             

@@ -273,9 +273,8 @@ public class OrderSummary extends javax.swing.JPanel {
     private void discountTypesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_discountTypesActionPerformed
         // TODO add your handling code here:
         String selectedValue =this.discountTypes.getSelectedItem().toString();
-        System.out.println("setting using strat: "+ OfferStrategy.getOfferStrategyType(selectedValue));
         this.currentOrder.setUsingStrategy(OfferStrategy.getOfferStrategyType(selectedValue));
-        System.out.println("Discount value: "+  this.currentOrder.runStrategy());
+        this.currentOrder.runStrategy();
         this.discount.setText(Double.toString(this.currentOrder.getOfferDiscount()));
         this.finalOrderCost.setText(Double.toString(this.currentOrder.getTotal()));
     }//GEN-LAST:event_discountTypesActionPerformed
@@ -305,12 +304,10 @@ public class OrderSummary extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     void setActiveCar(CarAPI selectedCar) {
-        System.out.println("In setActiveCar: "+ selectedCar.toString());
         this.selectedCar= selectedCar;
     }
 
     void setActiveOrder(CarOrder currentOrder) {
-        System.out.println("In setActiveOrder: "+ currentOrder.toString());
         this.currentOrder= currentOrder;
     }
 

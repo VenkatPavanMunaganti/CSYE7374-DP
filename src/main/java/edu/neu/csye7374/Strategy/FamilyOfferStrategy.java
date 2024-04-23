@@ -17,6 +17,6 @@ public class FamilyOfferStrategy implements OfferStrategyAPI {
 	@Override
 	public String discountDesc(CarOrder carOrder) {
 		// TODO Auto-generated method stub
-		return "20% discount for couple bike offer added!";
+		return "20% discount for family car offer added!";
 	}
 }

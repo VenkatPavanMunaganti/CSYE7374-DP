@@ -19,6 +19,6 @@ public class ExchangeOfferStrategy implements OfferStrategyAPI {
 	@Override
 	public String discountDesc(CarOrder car) {
 		// TODO Auto-generated method stub
-		return "40% discount for exchange bike offer added!";
+		return "40% discount for exchange car offer added!";
 	}
 }

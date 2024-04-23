@@ -31,4 +31,5 @@
 31,Indica,SUV,TATA Motors,4000.0
 32,Indica 2022,SEDAN,TATA Motors,10000.0
 33,Tiago,SEDAN,TATA Motors,15000.0
-34,Alto LXI,LIMO,Maruti Suzuki,12000.0
+34,Alto LXI,LIMO,Maruti Suzuki,12000.035,Monster,SUV,KIA,123845.0
+35,SuperCar,SPORTS,Lancer,2000000.0

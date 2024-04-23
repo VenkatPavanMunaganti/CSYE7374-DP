@@ -20,5 +20,4 @@ public class StudentOfferStrategy implements OfferStrategyAPI {
 		// TODO Auto-generated method stub
 		return "50% discount for students added!";
 	}
-
 }

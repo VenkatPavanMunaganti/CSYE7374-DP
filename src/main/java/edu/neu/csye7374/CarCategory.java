@@ -11,12 +11,12 @@ public enum CarCategory {
     MiniVan,
     Limo;
 
-    public static List<String> getBikeCategoryList() {
+    public static List<String> getCarCategoryList() {
 
         return Stream.of(CarCategory.values()).map(CarCategory::name).collect(Collectors.toList());
     }
 
-    public static String[] getBikeCategoryArray() {
+    public static String[] getCarCategoryArray() {
         return Arrays.stream(CarCategory.values()).map(CarCategory::name).toArray(String[]::new);
     }
 

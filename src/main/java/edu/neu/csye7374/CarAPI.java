@@ -5,7 +5,7 @@ public interface CarAPI {
 
     Object getCarManufacturer();
 
-    void setCarManufacturer(String bikeManufacturer);
+    void setCarManufacturer(String carManufacturer);
 
     int noOfCarsRented();
 

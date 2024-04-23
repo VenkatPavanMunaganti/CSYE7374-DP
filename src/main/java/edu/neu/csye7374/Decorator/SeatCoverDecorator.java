@@ -5,8 +5,8 @@ import edu.neu.csye7374.CarAPI;
 
 public class SeatCoverDecorator extends CarDecorator {
 
-    public SeatCoverDecorator(CarAPI decoratedBike) {
-        super(decoratedBike);
+    public SeatCoverDecorator(CarAPI decoratedCar) {
+        super(decoratedCar);
         // TODO Auto-generated constructor stub
     }
 

@@ -5,7 +5,7 @@ package edu.neu.csye7374;
 public class Manufacturer implements Cloneable {
     private String manufacturerName;
     private int manufacturingYear;
-    private int noOfBikesSold;
+    private int noOfCarsSold;
     private static Manufacturer instance;
 
     public Manufacturer() {
@@ -19,11 +19,11 @@ public class Manufacturer implements Cloneable {
         return instance;
     }
 
-    private Manufacturer(String manufacturerName, int manufacturingYear, int noOfBikesSold) {
+    private Manufacturer(String manufacturerName, int manufacturingYear, int noOfCarsSold) {
         super();
         this.manufacturerName = manufacturerName;
         this.manufacturingYear = manufacturingYear;
-        this.noOfBikesSold = noOfBikesSold;
+        this.noOfCarsSold = noOfCarsSold;
     }
 
     public void setValues(String line) {
@@ -51,18 +51,18 @@ public class Manufacturer implements Cloneable {
         return this;
     }
 
-    public int getNoOfBikesSold() {
-        return noOfBikesSold;
+    public int getNoOfCarsSold() {
+        return noOfCarsSold;
     }
 
-    public Manufacturer setNoOfCarsReleased(int noOfBikesReleased) {
-        this.noOfBikesSold = noOfBikesReleased;
+    public Manufacturer setNoOfCarsReleased(int noOfCarsReleased) {
+        this.noOfCarsSold = noOfCarsReleased;
         return this;
     }
 
     @Override
     public String toString() {
-        return manufacturerName + "," + manufacturingYear + "," + noOfBikesSold;
+        return manufacturerName + "," + manufacturingYear + "," + noOfCarsSold;
     }
 
     @Override
