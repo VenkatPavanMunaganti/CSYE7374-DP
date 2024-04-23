@@ -17,6 +17,9 @@ public class MainFrame extends javax.swing.JFrame {
      */
     public MainFrame() {
         initComponents();
+        AddMfrPanel mfrPanel = AddMfrPanel.getInstance();
+        mfrPanel.setMainFrame(this);
+        mainSplitPanel.setRightComponent(mfrPanel);
     }
 
     /**
@@ -32,7 +35,7 @@ public class MainFrame extends javax.swing.JFrame {
         MenuPanel = new javax.swing.JPanel();
         addCars = new javax.swing.JButton();
         addManufacturers = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        orderHistoryBtn = new javax.swing.JButton();
         orderBtn = new javax.swing.JButton();
         addEmployees = new javax.swing.JButton();
         MainContentPanel = new javax.swing.JPanel();
@@ -53,10 +56,10 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
-        jButton3.setText("Order History");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        orderHistoryBtn.setText("Order History");
+        orderHistoryBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                orderHistoryBtnActionPerformed(evt);
             }
         });
 
@@ -83,7 +86,7 @@ public class MainFrame extends javax.swing.JFrame {
                 .addGroup(MenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(addCars, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(addManufacturers, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(orderHistoryBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(orderBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(addEmployees, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
@@ -98,7 +101,7 @@ public class MainFrame extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(orderBtn)
                 .addGap(18, 18, 18)
-                .addComponent(jButton3)
+                .addComponent(orderHistoryBtn)
                 .addGap(18, 18, 18)
                 .addComponent(addEmployees)
                 .addContainerGap(405, Short.MAX_VALUE))
@@ -154,9 +157,11 @@ public class MainFrame extends javax.swing.JFrame {
         
     }//GEN-LAST:event_addManufacturersActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void orderHistoryBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_orderHistoryBtnActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+        OrderHistory orderHistoryPanel = OrderHistory.getInstance();
+        mainSplitPanel.setRightComponent(orderHistoryPanel);
+    }//GEN-LAST:event_orderHistoryBtnActionPerformed
 
     private void orderBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_orderBtnActionPerformed
         // TODO add your handling code here:
@@ -212,9 +217,9 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JButton addCars;
     private javax.swing.JButton addEmployees;
     private javax.swing.JButton addManufacturers;
-    private javax.swing.JButton jButton3;
     private javax.swing.JSplitPane mainSplitPanel;
     private javax.swing.JButton orderBtn;
+    private javax.swing.JButton orderHistoryBtn;
     // End of variables declaration//GEN-END:variables
 
     public JSplitPane getMainSplitPanel() {

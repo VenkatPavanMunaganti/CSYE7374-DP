@@ -60,7 +60,7 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="addCars" alignment="0" max="32767" attributes="0"/>
                           <Component id="addManufacturers" alignment="0" max="32767" attributes="0"/>
-                          <Component id="jButton3" alignment="0" max="32767" attributes="0"/>
+                          <Component id="orderHistoryBtn" alignment="0" max="32767" attributes="0"/>
                           <Component id="orderBtn" alignment="0" max="32767" attributes="0"/>
                           <Component id="addEmployees" alignment="1" max="32767" attributes="0"/>
                       </Group>
@@ -78,7 +78,7 @@
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="orderBtn" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="jButton3" min="-2" max="-2" attributes="0"/>
+                      <Component id="orderHistoryBtn" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="addEmployees" min="-2" max="-2" attributes="0"/>
                       <EmptySpace pref="405" max="32767" attributes="0"/>
@@ -103,12 +103,12 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addManufacturersActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton3">
+            <Component class="javax.swing.JButton" name="orderHistoryBtn">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Order History"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton3ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="orderHistoryBtnActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JButton" name="orderBtn">

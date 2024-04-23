@@ -1,26 +1,34 @@
-1,Porsche-811,115000.0,Sports,Porsche
-2,Fuel EX,750.0,Sedan,TREK BIKES
-3,Atroz,1200.0,Sports,DIAMONDBACK BIKES
-4,Stinson,699.0,Limo,MARIN BIKES
-1,Porsche-811,115000.0,Sports,Porsche
-2,Fuel EX,750.0,Sedan,TREK BIKES
-3,Atroz,1200.0,Sports,DIAMONDBACK BIKES
-4,Stinson,699.0,Limo,MARIN BIKES
-1,Porsche-811,115000.0,Sports,Porsche
-2,Fuel EX,750.0,Sedan,TREK BIKES
-3,Atroz,1200.0,Sports,DIAMONDBACK BIKES
-4,Stinson,699.0,Limo,MARIN BIKES
-1,Porsche-811,115000.0,Sports,Porsche
-2,Fuel EX,750.0,Sedan,TREK BIKES
-3,Atroz,1200.0,Sports,DIAMONDBACK BIKES
-4,Stinson,699.0,Limo,MARIN BIKES
-1,Porsche-811,115000.0,Sports,Porsche
-2,Fuel EX,750.0,Sedan,TREK BIKES
-3,Atroz,1200.0,Sports,DIAMONDBACK BIKES
-4,Stinson,699.0,Limo,MARIN BIKES
-1,Porsche-811,115000.0,Sports,Porsche
-2,Fuel EX,750.0,Sedan,TREK BIKES
-3,Atroz,1200.0,Sports,DIAMONDBACK BIKES
-4,Stinson,699.0,Limo,MARIN BIKES
-1,T,1.0,minivan,T
-1,F,12.0,minivan,F
+1,Corolla,SEDAN,Toyota,25000.0
+2,Camry,SEDAN,Toyota,35000.0
+3,Rav4,SUV,Toyota,30000.0
+4,Fusion,SEDAN,Ford,28000.0
+5,Escape,SUV,Ford,32000.0
+6,Focus,HATCHBACK,Ford,24000.0
+7,Golf,HATCHBACK,Volkswagen,26000.0
+8,Passat,SEDAN,Volkswagen,33000.0
+9,Tiguan,SUV,Volkswagen,35000.0
+10,Civic,SEDAN,Honda,27000.0
+11,Accord,SEDAN,Honda,32000.0
+12,CR-V,SUV,Honda,29000.0
+13,Chevrolet Cruze,SEDAN,General Motors,28000.0
+14,Chevrolet Equinox,SUV,General Motors,31000.0
+15,Chevrolet Malibu,SEDAN,General Motors,30000.0
+16,Altima,SEDAN,Nissan,27000.0
+17,Rogue,SUV,Nissan,32000.0
+18,Maxima,SEDAN,Nissan,34000.0
+19,3 Series,SEDAN,BMW,40000.0
+20,5 Series,SEDAN,BMW,50000.0
+21,X3,SUV,BMW,45000.0
+22,C-Class,SEDAN,Mercedes-Benz,45000.0
+23,E-Class,SEDAN,Mercedes-Benz,55000.0
+24,GLC,SUV,Mercedes-Benz,50000.0
+25,Sonata,SEDAN,Hyundai,28000.0
+26,Tucson,SUV,Hyundai,32000.0
+27,Elantra,SEDAN,Hyundai,25000.0
+28,A4,SEDAN,Audi,42000.0
+29,Q5,SUV,Audi,48000.0
+30,A6,SEDAN,Audi,55000.0
+31,Indica,SUV,TATA Motors,4000.0
+32,Indica 2022,SEDAN,TATA Motors,10000.0
+33,Tiago,SEDAN,TATA Motors,15000.0
+34,Alto LXI,LIMO,Maruti Suzuki,12000.0

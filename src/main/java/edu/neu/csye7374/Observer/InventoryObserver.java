@@ -8,12 +8,11 @@ public class InventoryObserver implements CheckoutObserverAPI {
 	public void update(CarOrder carorder) {
 		// TODO Auto-generated method stub
 		if (carorder.getCarDeliveryType() == CarDeliveryType.Delivery) {
-			int count = carorder.getCarCount();
-			if (count <= 5) {
-				carorder.setDeliveryCost(20);
+			if (carorder.getTotal() <= 10000) {
+				carorder.setDeliveryCost(50);
 			} else {
-				carorder.setDeliveryCost((count - 5) + 10 * 3);
-			}
+				carorder.setDeliveryCost(200);
+			}   
 		}
 	}
 }

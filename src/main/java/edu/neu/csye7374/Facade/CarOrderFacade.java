@@ -29,11 +29,11 @@ public class CarOrderFacade {
 	}
 
 	public CarOrder carOrder() {
-		CarOrder order = new CarOrder();
-		CarDecorator dashcamCar = new Insurance(car);
-		System.out.println(dashcamCar);
-		order.addCar(dashcamCar);
-		return order;
+            CarOrder order = new CarOrder();
+            CarDecorator insurance = new Insurance(car);
+            System.out.println(insurance);
+            order.addCar(insurance);
+            return order;
 	}
 
 }

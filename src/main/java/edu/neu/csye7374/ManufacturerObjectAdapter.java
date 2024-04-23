@@ -51,4 +51,19 @@ public class ManufacturerObjectAdapter implements CarAPI {
         return this.car.getCarId();
     }
 
+    @Override
+    public double getCarRentPrice() {
+        return this.getCarRentPrice();
+    }
+
+    @Override
+    public String getCarName() {
+        return this.car.getCarName();
+    }
+
+    @Override
+    public CarCategory getCarCategory() {
+        return this.car.getCarCategory();
+    }
+
 }

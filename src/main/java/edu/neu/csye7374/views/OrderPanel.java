@@ -6,14 +6,19 @@ package edu.neu.csye7374.views;
 
 import edu.neu.csye7374.Car;
 import edu.neu.csye7374.CarAPI;
+import edu.neu.csye7374.Command.Invoker;
 import edu.neu.csye7374.Decorator.CarDecorator;
 import edu.neu.csye7374.Decorator.DashcamDecorator;
 import edu.neu.csye7374.Decorator.SeatCoverDecorator;
+import edu.neu.csye7374.Facade.CarDeliveryType;
 import edu.neu.csye7374.Facade.CarOrderFacade;
 import edu.neu.csye7374.Observer.CarOrder;
 import java.awt.Color;
+import java.util.ArrayList;
 import java.util.List;
+import javax.swing.ButtonModel;
 import javax.swing.JOptionPane;
+import javax.swing.JRadioButton;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -55,6 +60,8 @@ public class OrderPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        purchaseOptions = new javax.swing.ButtonGroup();
+        deliveryOptions = new javax.swing.ButtonGroup();
         jScrollPane1 = new javax.swing.JScrollPane();
         carsTable = new javax.swing.JTable();
         insurance = new javax.swing.JCheckBox();
@@ -64,20 +71,29 @@ public class OrderPanel extends javax.swing.JPanel {
         applyDecoratorsAndNext = new javax.swing.JButton();
         selectCar = new javax.swing.JButton();
         carsRefreshBtn = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        buyRBtn = new javax.swing.JRadioButton();
+        rentRBtn = new javax.swing.JRadioButton();
+        pickupRBtn = new javax.swing.JRadioButton();
+        deliveryRBtn = new javax.swing.JRadioButton();
+
+        setMinimumSize(new java.awt.Dimension(793, 581));
+        setPreferredSize(new java.awt.Dimension(793, 581));
 
         carsTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Car Id", "Name", "Price", "Category", "Manufacturer"
+                "Car Id", "Name", "Category", "Manufacturer", "Buy Price", "Rent Price"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -151,35 +167,68 @@ public class OrderPanel extends javax.swing.JPanel {
             }
         });
 
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel2.setText("Purchase options");
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel3.setText("Delivery Type");
+
+        purchaseOptions.add(buyRBtn);
+        buyRBtn.setText("Buy");
+
+        purchaseOptions.add(rentRBtn);
+        rentRBtn.setText("Rent");
+
+        deliveryOptions.add(pickupRBtn);
+        pickupRBtn.setText("Pick-Up");
+        pickupRBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pickupRBtnActionPerformed(evt);
+            }
+        });
+
+        deliveryOptions.add(deliveryRBtn);
+        deliveryRBtn.setText("Delivery");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(applyDecoratorsAndNext, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 781, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(applyDecoratorsAndNext, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(19, 19, 19))
+                        .addComponent(carsRefreshBtn))
+                    .addComponent(selectCar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(buyRBtn)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(rentRBtn))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(pickupRBtn)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(deliveryRBtn))))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(insurance)
                                 .addGap(18, 18, 18)
                                 .addComponent(dashcam)
                                 .addGap(18, 18, 18)
                                 .addComponent(seatcovers))
-                            .addComponent(jLabel1))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(selectCar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 663, Short.MAX_VALUE))
-                        .addContainerGap())))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(carsRefreshBtn)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel3))
+                        .addGap(0, 2, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -188,9 +237,19 @@ public class OrderPanel extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(carsRefreshBtn)
                 .addGap(11, 11, 11)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(selectCar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(buyRBtn)
+                    .addComponent(rentRBtn))
+                .addGap(16, 16, 16)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(pickupRBtn)
+                    .addComponent(deliveryRBtn))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -198,9 +257,9 @@ public class OrderPanel extends javax.swing.JPanel {
                     .addComponent(insurance)
                     .addComponent(dashcam)
                     .addComponent(seatcovers))
-                .addGap(49, 49, 49)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
                 .addComponent(applyDecoratorsAndNext, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(21, 21, 21))
+                .addGap(36, 36, 36))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -255,29 +314,70 @@ public class OrderPanel extends javax.swing.JPanel {
         if(selectedCar == null){
             JOptionPane.showMessageDialog(this, "Please select a car before proceeding");
         }else{
+            System.out.println("Car before command: "+ this.selectedCar);
+            ButtonModel purchaseOptionsSelection= purchaseOptions.getSelection();
+            if(purchaseOptionsSelection != null){
+                Invoker invoker= new Invoker();
+                ArrayList<Car> selectedCars= new ArrayList<>();
+                selectedCars.add((Car) this.selectedCar);
+                
+                String val= "";
+                if(rentRBtn.isSelected()){
+                    val="rent";
+                }else{
+                    val="buy";
+                }
+                
+                if(val.equalsIgnoreCase("rent")){
+                    invoker.rentCarOrders(selectedCars);
+                }else{
+                    invoker.placeCarOrders(selectedCars);
+                }
+            }
+            System.out.println("Car after command: "+ this.selectedCar);
+            
             CarOrderFacade orderFacade = new CarOrderFacade(selectedCar);
-            currentOrder= orderFacade.carOrder();
+            this.currentOrder= orderFacade.carOrder();
             this.selectedCar = orderFacade.getCar();
             
-            System.out.println("Dashcam: "+ dashcam.isEnabled());
+            System.out.println("before setting delivery option: "+ this.currentOrder);
+            ButtonModel deliveryOptionsSelection= deliveryOptions.getSelection();
+            if(deliveryOptionsSelection != null){
+                String val= "";
+                if(pickupRBtn.isSelected()){
+                    System.out.println("in set pickup");
+                    this.currentOrder.setCarDeliveryType(CarDeliveryType.Pickup);
+                }else{
+                    System.out.println("in set devliery");
+                    this.currentOrder.setCarDeliveryType(CarDeliveryType.Delivery);
+                    System.out.println("After setting delivery"+ currentOrder.getCarDeliveryType());
+                }
+            }
+            System.out.println("after setting delivery option: "+ this.currentOrder);
+            
             if(dashcam.isSelected()){
-                System.out.println("SelectedCar: "+ selectedCar);
                 CarDecorator decoratedCar= new DashcamDecorator(selectedCar);
-                System.out.println("decoratedCar: "+ decoratedCar);
                 this.selectedCar = decoratedCar;
             }
             
-            System.out.println("seatcovers: "+ seatcovers.isEnabled());
             if(seatcovers.isSelected()){
-                System.out.println("SelectedCar: "+ selectedCar);
-
                 CarDecorator decoratedCar= new SeatCoverDecorator(selectedCar);
-                System.out.println("decoratedCar: "+ decoratedCar);
-
                 this.selectedCar = decoratedCar;
             }
             
+            
+            System.out.println("Current order at the end"+ this.currentOrder.getCarDeliveryType());
             OrderSummary os= OrderSummary.getInstance();
+            os.setMainFrame(mainFrameRef);
+            os.setActiveCar(this.selectedCar);
+            os.setActiveOrder(this.currentOrder);
+            os.setLabelValues();
+            this.selectedCar = null;
+            this.currentOrder = null;
+            this.purchaseOptions.clearSelection();
+            this.deliveryOptions.clearSelection();
+            this.dashcam.setSelected(false);
+            this.seatcovers.setSelected(false);
             this.mainFrameRef.getMainSplitPanel().setRightComponent(os);
         }
     }//GEN-LAST:event_applyDecoratorsAndNextActionPerformed
@@ -314,15 +414,27 @@ public class OrderPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_dashcamActionPerformed
 
+    private void pickupRBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pickupRBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_pickupRBtnActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton applyDecoratorsAndNext;
+    private javax.swing.JRadioButton buyRBtn;
     private javax.swing.JButton carsRefreshBtn;
     private javax.swing.JTable carsTable;
     private javax.swing.JCheckBox dashcam;
+    private javax.swing.ButtonGroup deliveryOptions;
+    private javax.swing.JRadioButton deliveryRBtn;
     private javax.swing.JCheckBox insurance;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JRadioButton pickupRBtn;
+    private javax.swing.ButtonGroup purchaseOptions;
+    private javax.swing.JRadioButton rentRBtn;
     private javax.swing.JCheckBox seatcovers;
     private javax.swing.JButton selectCar;
     // End of variables declaration//GEN-END:variables
@@ -334,13 +446,14 @@ public class OrderPanel extends javax.swing.JPanel {
         List<CarAPI> carList= AddCarsPanel.getInstance().getCarList();
         System.out.println(carList);
         for(CarAPI car : carList){
-            Object[] row = new Object[5];
+            Object[] row = new Object[6];
             
             String[] carString = car.toString().split(",");
-            
-            for (int i = 0; i < 5; i++) {
+            int i;
+            for (i = 0; i < 5; i++) {
                 row[i] = carString[i];
             }
+            row[i] = car.getCarRentPrice();
             
             model.addRow(row);
         }

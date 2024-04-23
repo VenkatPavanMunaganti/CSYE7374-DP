@@ -99,17 +99,17 @@ public class AddCarsPanel extends javax.swing.JPanel {
 
         carsTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Car Id", "Name", "Price", "Category", "Manufacturer"
+                "Car Id", "Name", "Category", "Manufacturer", "Buy Price", "Rent Price"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -178,7 +178,7 @@ public class AddCarsPanel extends javax.swing.JPanel {
             }
         });
 
-        carCategory.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "suv", "sports", "minivan", "limo", "sedan" }));
+        carCategory.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SUV", "SPORTS", "MINIVAN", "LIMO", "SEDAN" }));
         carCategory.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 carCategoryActionPerformed(evt);
@@ -216,7 +216,7 @@ public class AddCarsPanel extends javax.swing.JPanel {
                                         .addComponent(carName, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(18, 18, 18)
                                 .addComponent(carCategory, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
-                .addContainerGap(38, Short.MAX_VALUE))
+                .addContainerGap(36, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -224,7 +224,7 @@ public class AddCarsPanel extends javax.swing.JPanel {
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 783, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 781, Short.MAX_VALUE)
                     .addContainerGap()))
         );
         layout.setVerticalGroup(
@@ -244,14 +244,14 @@ public class AddCarsPanel extends javax.swing.JPanel {
                     .addComponent(jLabel2)
                     .addComponent(jLabel6)
                     .addComponent(carManufacturer, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
                 .addComponent(carCreateBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(35, 35, 35))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(280, Short.MAX_VALUE)))
+                    .addContainerGap(279, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -312,7 +312,7 @@ public class AddCarsPanel extends javax.swing.JPanel {
         double price = Double.parseDouble(carPrice.getText());
         String mfr = carManufacturer.getSelectedItem().toString();
         String category = carCategory.getSelectedItem().toString();
-        CarCategory categoryEnumVal = CarCategory.getCarCategory(category);
+        CarCategory categoryEnumVal = CarCategory.getCarCategory(category.toLowerCase());
 
 //        if(carList.stream().map(car -> car.getCarId()).toList().contains("id")){
 //            JOptionPane.showMessageDialog(this, "Car with this ID already exists");
@@ -323,7 +323,7 @@ public class AddCarsPanel extends javax.swing.JPanel {
         carList.add((Car) car);
 //      OperatingSystem.getInstance().writeBooks();
 
-        String lineToFile = id + "," + name + "," + price + "," + category + "," + mfr;
+        String lineToFile = id + "," + name + "," + category + "," + mfr + "," + price ;
         GeneralFileUtil.writeFile(CARS_FILE_NAME, lineToFile, false);
 
         
@@ -382,15 +382,16 @@ public class AddCarsPanel extends javax.swing.JPanel {
         DefaultTableModel model = (DefaultTableModel) carsTable.getModel();
         model.setRowCount(0);
 
-        for (CarAPI car : carList) {
-            Object[] row = new Object[5];
-
+         for(CarAPI car : carList){
+            Object[] row = new Object[6];
+            
             String[] carString = car.toString().split(",");
-
-            for (int i = 0; i < 5; i++) {
+            int i;
+            for (i = 0; i < 5; i++) {
                 row[i] = carString[i];
             }
-
+            row[i] = car.getCarRentPrice();
+            
             model.addRow(row);
         }
     }

@@ -72,10 +72,16 @@ public class Car implements CarAPI {
         // TODO Auto-generated method stub
         return (int) Math.random() * 5;
     }
+    
+    public double getCarRentPrice(){
+        double rentPrice = this.carPrice * 0.05;
+        rentPrice = Math.round(rentPrice * 100.0) / 100.0;
+        return rentPrice;
+    }
 
     @Override
     public String toString() {
-        return carId + "," + carName + "," + carPrice + "," + carCategory + "," + carManufacturer;
+        return carId + "," + carName + "," + carCategory + "," + carManufacturer + "," + carPrice;
     }
 
     
@@ -85,29 +91,9 @@ public class Car implements CarAPI {
     }
 
     public String rentCar() {
-        this.carPrice = this.carPrice * 0.05;
+        double rentPrice = this.carPrice * 0.05;
+        rentPrice = Math.round(rentPrice * 100.0) / 100.0;
+        this.carPrice = rentPrice;
         return this.toString() + " is rented!!";
-    }
-
-    public double runStrategy() {
-        double value = 0;
-        switch (CarDealership.usingStrategy) {
-            case StudentOfferStrategy:
-                value = CarDealership.getstrategyMap().get(OfferStrategy.StudentOfferStrategy).discountAmt(this);
-                break;
-            case ExchangeOfferStrategy:
-                value = CarDealership.getstrategyMap().get(OfferStrategy.ExchangeOfferStrategy).discountAmt(this);
-                break;
-            case FamilyOfferStrategy:
-                value = CarDealership.getstrategyMap().get(OfferStrategy.FamilyOfferStrategy).discountAmt(this);
-                break;
-            case NewMemberOfferStrategy:
-                value = CarDealership.getstrategyMap().get(OfferStrategy.NewMemberOfferStrategy).discountAmt(this);
-                break;
-            default:
-                value = carPrice;
-                break;
-        }
-        return value;
     }
 }

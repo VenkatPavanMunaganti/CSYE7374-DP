@@ -5,13 +5,21 @@ import java.util.List;
 
 import edu.neu.csye7374.CarAPI;
 import edu.neu.csye7374.Facade.CarDeliveryType;
+import edu.neu.csye7374.Strategy.ExchangeOfferStrategy;
+import edu.neu.csye7374.Strategy.FamilyOfferStrategy;
+import edu.neu.csye7374.Strategy.NewMemberOfferStrategy;
+import edu.neu.csye7374.Strategy.OfferStrategy;
+import static edu.neu.csye7374.Strategy.OfferStrategy.StudentOfferStrategy;
+import edu.neu.csye7374.Strategy.OfferStrategyAPI;
+import edu.neu.csye7374.Strategy.StudentOfferStrategy;
 import edu.neu.csye7374.state_DP.CarOrderConfirmed;
 import edu.neu.csye7374.state_DP.CarDelivered;
 import edu.neu.csye7374.state_DP.CarDelivery;
 import edu.neu.csye7374.state_DP.CarDeliveryStateAPI;
+import java.util.HashMap;
+import java.util.Map;
 
 public class CarOrder implements CarDeliveryStateAPI {
-
 	private int carId;
 	private double carOrderCost = 0;
 	private int carCount = 0;
@@ -21,22 +29,31 @@ public class CarOrder implements CarDeliveryStateAPI {
 	private static int counter = 0;
 	private List<CheckoutObserverAPI> observers = new ArrayList<>();
 	private List<CarAPI> carList = new ArrayList<>();
+        private OfferStrategy usingStrategy = OfferStrategy.NONE;
 
 	{
-		observers.add(new CarPriceObserver());
-		observers.add(new InventoryObserver());
+            observers.add(new CarPriceObserver());
+            observers.add(new InventoryObserver());
 	}
 
 	private CarDeliveryStateAPI orderConfirmed = new CarOrderConfirmed(this);
 	private CarDeliveryStateAPI orderDispatched = new CarDelivery(this);
 	private CarDeliveryStateAPI orderDelivered = new CarDelivered(this);
 	private CarDeliveryStateAPI state;
+        
+        private static Map<OfferStrategy, OfferStrategyAPI> strategyMap = new HashMap<>();
+        {
+                strategyMap.put(OfferStrategy.StudentOfferStrategy, new StudentOfferStrategy());
+                strategyMap.put(OfferStrategy.ExchangeOfferStrategy, new ExchangeOfferStrategy());
+                strategyMap.put(OfferStrategy.FamilyOfferStrategy, new FamilyOfferStrategy());
+                strategyMap.put(OfferStrategy.NewMemberOfferStrategy, new NewMemberOfferStrategy());
+        }
 
 	public CarOrder() {
 		super();
 		this.carId = ++counter;
-		this.deliveryType = CarDeliveryType.Pickup;
-		this.state = getCarOrderConfirmed();
+		this.deliveryType = CarDeliveryType.Delivery;
+//		this.state = getCarOrderConfirmed();
 	}
 
 	public CarOrder(double orderCost, int carCount, double shippingCost, CarDeliveryType deliveryType) {
@@ -51,7 +68,7 @@ public class CarOrder implements CarDeliveryStateAPI {
 		} else {
 			this.shippingCost = shippingCost;
 		}
-		this.state = getCarOrderConfirmed();
+//		this.state = getCarOrderConfirmed();
 	}
 
 	public void addCar(CarAPI Car) {
@@ -63,14 +80,26 @@ public class CarOrder implements CarDeliveryStateAPI {
 
 	public boolean removeCar(CarAPI Car) {
 		if (carList.remove(Car)) {
-			return true;
+                    return true;
 		}
 		return false;
 	}
+        
+        public void setUsingStrategy(OfferStrategy usingStrategy) {
+                this.usingStrategy = usingStrategy;
+        }
+        
+        public OfferStrategy getUsingStrategy() {
+                return usingStrategy;
+        }
 
 	public CarDeliveryStateAPI getCarOrderConfirmed() {
 		return orderConfirmed;
 	}
+        
+        public void confirmOrder(){
+            this.state = this.orderConfirmed;
+        }
 
 	public void setCarOrderConfirmed(CarDeliveryStateAPI orderConfirmed) {
 		orderConfirmed = orderConfirmed;
@@ -196,6 +225,34 @@ public class CarOrder implements CarDeliveryStateAPI {
 	public void setDeliveryCost(double shippingCost) {
 		this.shippingCost = shippingCost;
 	}
+        
+        public static Map<OfferStrategy, OfferStrategyAPI> getstrategyMap() {
+            return strategyMap;
+        }
+
+        
+        public double runStrategy() {
+            double value = 0;
+            System.out.println("Using strat: "+ this.usingStrategy);
+            switch (this.usingStrategy) {
+                case StudentOfferStrategy:
+                    value = CarOrder.getstrategyMap().get(OfferStrategy.StudentOfferStrategy).discountAmt(this);
+                    break;
+                case ExchangeOfferStrategy:
+                    value = CarOrder.getstrategyMap().get(OfferStrategy.ExchangeOfferStrategy).discountAmt(this);
+                    break;
+                case FamilyOfferStrategy:
+                    value = CarOrder.getstrategyMap().get(OfferStrategy.FamilyOfferStrategy).discountAmt(this);
+                    break;
+                case NewMemberOfferStrategy:
+                    value = CarOrder.getstrategyMap().get(OfferStrategy.NewMemberOfferStrategy).discountAmt(this);
+                    break;
+                default:
+                    value = this.getCarOrderCost();
+                    break;
+            }
+            return value;
+        }
 
 	@Override
 	public String toString() {
