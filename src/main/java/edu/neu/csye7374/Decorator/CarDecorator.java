@@ -43,7 +43,7 @@ public class CarDecorator implements CarAPI {
 	}
 
 	@Override
-	public void setCarManufacturer(String bikeManufacturer) {
+	public void setCarManufacturer(String carManufacturer) {
 
 	}
 

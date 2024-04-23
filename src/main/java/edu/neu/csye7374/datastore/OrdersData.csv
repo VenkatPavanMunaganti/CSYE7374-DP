@@ -4,3 +4,7 @@ Civic,Sedan,Honda,Pickup,1570.0,0.0,StudentOfferStrategy,800.0,800.0
 Alto LXI,Limo,Maruti Suzuki,Delivery,12420.0,200.0,NewMemberOfferStrategy,3675.0,8775.0
 A4,Sedan,Audi,Delivery,42420.0,200.0,None,30.0,42420.0
 GLC,SUV,Mercedes-Benz,Delivery,2770.0,50.0,NewMemberOfferStrategy,825.0,1975.0
+Monster,SUV,KIA,Delivery,6462.25,50.0,FamilyOfferStrategy,30.0,6462.25
+Q5,SUV,Audi,Delivery,48420.0,200.0,ExchangeOfferStrategy,30.0,48420.0
+Maxima,Sedan,Nissan,Delivery,34420.0,200.0,FamilyOfferStrategy,6850.0,27600.0
+SuperCar,Sports,Lancer,Delivery,2000420.0,200.0,NewMemberOfferStrategy,600075.0,1400375.0

@@ -17,8 +17,8 @@ public class CarBuilder implements BuilderAPI {
         return carManufacturer;
     }
 
-    public void setBikeAuthor(String bikeManufacturer) {
-        this.carManufacturer = bikeManufacturer;
+    public void setCarManufacturer(String carManufacturer) {
+        this.carManufacturer = carManufacturer;
     }
 
     public int getCarId() {
@@ -49,7 +49,7 @@ public class CarBuilder implements BuilderAPI {
         return carCategory;
     }
 
-    public void setBikeCategory(CarCategory carCategory) {
+    public void setCarCategory(CarCategory carCategory) {
         this.carCategory = carCategory;
     }
 

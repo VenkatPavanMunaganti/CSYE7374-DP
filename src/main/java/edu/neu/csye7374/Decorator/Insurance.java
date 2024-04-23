@@ -4,8 +4,8 @@ import edu.neu.csye7374.Car;
 import edu.neu.csye7374.CarAPI;
 
 public class Insurance extends CarDecorator {
-    public Insurance(CarAPI decoratedBike) {
-        super(decoratedBike);
+    public Insurance(CarAPI decoratedCar) {
+        super(decoratedCar);
         // TODO Auto-generated constructor stub
     }
 

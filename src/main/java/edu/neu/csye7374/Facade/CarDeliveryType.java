@@ -4,7 +4,7 @@ public enum CarDeliveryType {
     Delivery,
     Pickup;
 
-    public static CarDeliveryType getBikeDeliveryType(String s) {
+    public static CarDeliveryType getCarDeliveryType(String s) {
         switch (s.toLowerCase()) {
             case "delivery":
                 return CarDeliveryType.Delivery;
