@@ -1,0 +1,6 @@
+Focus,Sedan,Ford,Delivery,24420.0,200.0,FamilyOfferStrategy,4850.0,19600.0
+Passat,Sedan,Volkswagen,Delivery,33420.0,200.0,StudentOfferStrategy,16625.0,16825.0
+Civic,Sedan,Honda,Pickup,1570.0,0.0,StudentOfferStrategy,800.0,800.0
+Alto LXI,Limo,Maruti Suzuki,Delivery,12420.0,200.0,NewMemberOfferStrategy,3675.0,8775.0
+A4,Sedan,Audi,Delivery,42420.0,200.0,None,30.0,42420.0
+GLC,SUV,Mercedes-Benz,Delivery,2770.0,50.0,NewMemberOfferStrategy,825.0,1975.0

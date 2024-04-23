@@ -27,7 +27,7 @@ public class CarDecorator implements CarAPI {
 
 	@Override
 	public String toString() {
-		return "BikeDecorator [bikeDescription :" + carDescription() + ", "
+		return "CarDecorator [CarDecorator :" + carDescription() + ", "
 				+ " $ " + getDecoratedCar() + " $";
 	}
 
@@ -50,5 +50,20 @@ public class CarDecorator implements CarAPI {
     @Override
     public int getCarId() {
         return this.decoratedCar.getCarId();
+    }
+
+    @Override
+    public double getCarRentPrice() {
+        return this.getCarRentPrice();
+    }
+
+    @Override
+    public String getCarName() {
+        return this.decoratedCar.getCarName();
+    }
+
+    @Override
+    public CarCategory getCarCategory() {
+        return this.decoratedCar.getCarCategory();
     }
 }

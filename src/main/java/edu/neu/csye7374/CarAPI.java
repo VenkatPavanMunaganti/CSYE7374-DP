@@ -12,4 +12,10 @@ public interface CarAPI {
     double getCarPrice();
 
     public int getCarId();
+    
+    public double getCarRentPrice();
+    
+    public String getCarName();
+    
+    public CarCategory getCarCategory();
 }

@@ -7,11 +7,11 @@ import edu.neu.csye7374.Car;
 public class Invoker {
     private List<Car> orderList = new ArrayList<>();
 
-    public void takeBikeOrder(Car order) {
+    public void takeCarOrder(Car order) {
         orderList.add(order);
     }
 
-    public void placeBikeOrders() {
+    public void placeCarOrders() {
         BuyCarCommand buyCarCommand = BuyCarCommand.getInstance();
         for (Car order : orderList) {
             System.out.println(buyCarCommand.setCar(order).execute());
@@ -19,14 +19,14 @@ public class Invoker {
         orderList.clear();
     }
 
-    public void placeBikeOrders(List<Car> carList) {
+    public void placeCarOrders(List<Car> carList) {
         for (Car b : carList) {
             orderList.add(b);
         }
-        placeBikeOrders();
+        placeCarOrders();
     }
 
-    public void rentBikeOrders() {
+    public void rentCarOrders() {
         RentCarCommand rentCarCommand = RentCarCommand.getInstance();
         for (Car order : orderList) {
             System.out.println(rentCarCommand.setCar(order)
@@ -35,18 +35,18 @@ public class Invoker {
         orderList.clear();
     }
 
-    public void rentBikeOrders(List<Car> carList) {
+    public void rentCarOrders(List<Car> carList) {
         for (Car b : carList) {
             orderList.add(b);
         }
-        rentBikeOrders();
+        rentCarOrders();
     }
 
-    public List<Car> getBikeOrderList() {
+    public List<Car> getCarOrderList() {
         return orderList;
     }
 
-    public void setBikeOrderList(List<Car> orderList) {
+    public void setCarOrderList(List<Car> orderList) {
         this.orderList = orderList;
     }
 

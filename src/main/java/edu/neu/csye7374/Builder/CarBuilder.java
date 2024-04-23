@@ -67,9 +67,9 @@ public class CarBuilder implements BuilderAPI {
         String[] tokens = s.split(",");
         this.carId = Integer.parseInt(tokens[0]);
         this.carName = tokens[1];
-        this.carPrice = Double.parseDouble(tokens[2]);
-        this.carCategory = CarCategory.getCarCategory(tokens[3]);
-        this.carManufacturer = tokens[4];
+        this.carPrice = Double.parseDouble(tokens[4]);
+        this.carCategory = CarCategory.getCarCategory(tokens[2]);
+        this.carManufacturer = tokens[3];
     }
 
     @Override

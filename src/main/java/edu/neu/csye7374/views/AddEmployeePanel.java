@@ -350,15 +350,10 @@ public class AddEmployeePanel extends javax.swing.JPanel {
 
     private void empAgeKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_empAgeKeyReleased
         // TODO add your handling code here:
-         Integer age = Integer.parseInt(empAge.getText());
-         if(age<18){
-             empAgeError.setText("Age should be greater than 18 ! ");
-         }
     }//GEN-LAST:event_empAgeKeyReleased
 
     private void empAgeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_empAgeKeyPressed
         // TODO add your handling code here:
-        empAgeError.setText("");
     }//GEN-LAST:event_empAgeKeyPressed
 
 

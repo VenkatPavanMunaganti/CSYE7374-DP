@@ -4,12 +4,27 @@
  */
 package edu.neu.csye7374.views;
 
+import edu.neu.csye7374.Car;
+import edu.neu.csye7374.CarAPI;
+import edu.neu.csye7374.Facade.CarDeliveryType;
+import edu.neu.csye7374.Manufacturer;
+import edu.neu.csye7374.Observer.CarOrder;
+import edu.neu.csye7374.Strategy.OfferStrategy;
+import edu.neu.csye7374.fileUtil.GeneralFileUtil;
+import java.awt.Color;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Pavan munaganti
  */
 public class OrderSummary extends javax.swing.JPanel {
     private static OrderSummary instance=null;
+    private CarAPI selectedCar= null;
+    private CarOrder currentOrder= null;
+    private String ORDERS_FILE_NAME = "OrdersData.csv";
+    private MainFrame mainFrameRef;
+
 
     /**
      * Creates new form OrderSummary
@@ -18,7 +33,7 @@ public class OrderSummary extends javax.swing.JPanel {
         initComponents();
     }
     
-     public static OrderSummary getInstance(){
+    public static OrderSummary getInstance(){
         if(instance == null){
             instance= new OrderSummary();
         }
@@ -34,39 +49,296 @@ public class OrderSummary extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTextField1 = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        carName = new javax.swing.JLabel();
+        carCategory = new javax.swing.JLabel();
+        carMfr = new javax.swing.JLabel();
+        deliveryType = new javax.swing.JLabel();
+        discount = new javax.swing.JLabel();
+        shippingCost = new javax.swing.JLabel();
+        orderCost = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        discountTypes = new javax.swing.JComboBox<>();
+        confirmOrderBtn = new javax.swing.JButton();
+        jLabel12 = new javax.swing.JLabel();
+        finalOrderCost = new javax.swing.JLabel();
 
-        jTextField1.setText("Hello");
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        setMinimumSize(new java.awt.Dimension(793, 581));
+
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(204, 0, 0));
+        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel9.setText("Order Summary");
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel2.setText("Car Name");
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel4.setText("Category");
+
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel5.setText("Manufacturer");
+
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel6.setText("Delivery Type");
+
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel7.setText("Discount Price");
+
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel8.setText("Shipping Cost");
+
+        jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel10.setText("Order Cost");
+
+        carName.setText("Car Name");
+
+        carCategory.setText("Car Category");
+
+        carMfr.setText("Mfr");
+
+        deliveryType.setText("Delivery Type");
+
+        discount.setText("Disount Amount");
+
+        shippingCost.setText("Shipping Cost");
+
+        orderCost.setText("Order Cost");
+
+        jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel11.setText("Discount Type");
+
+        discountTypes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", "StudentOfferStrategy", "ExchangeOfferStrategy", "FamilyOfferStrategy", "NewMemberOfferStrategy" }));
+        discountTypes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                discountTypesActionPerformed(evt);
             }
         });
+
+        confirmOrderBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        confirmOrderBtn.setText("Confirm Order");
+        confirmOrderBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                confirmOrderBtnMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                confirmOrderBtnMouseExited(evt);
+            }
+        });
+        confirmOrderBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                confirmOrderBtnActionPerformed(evt);
+            }
+        });
+
+        jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel12.setText("Final Cost");
+
+        finalOrderCost.setText("Final Cost");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(288, 288, 288)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(423, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(290, 290, 290)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel4))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(carName)
+                            .addComponent(carCategory)
+                            .addComponent(carMfr)
+                            .addComponent(deliveryType)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(290, 290, 290)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel8)
+                                .addGap(18, 18, 18)
+                                .addComponent(shippingCost))
+                            .addComponent(confirmOrderBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(discountTypes, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel7)
+                                    .addComponent(jLabel12))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(finalOrderCost)
+                                    .addComponent(discount)))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(293, 293, 293)
+                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(310, 310, 310)
+                        .addComponent(jLabel10)
+                        .addGap(18, 18, 18)
+                        .addComponent(orderCost)))
+                .addContainerGap(279, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(205, 205, 205)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(241, Short.MAX_VALUE))
+                .addGap(77, 77, 77)
+                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(carName))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(carCategory))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(carMfr))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(deliveryType))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10)
+                    .addComponent(orderCost))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(shippingCost))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel11)
+                    .addComponent(discountTypes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(discount))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel12)
+                    .addComponent(finalOrderCost))
+                .addGap(18, 18, 18)
+                .addComponent(confirmOrderBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(134, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void confirmOrderBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_confirmOrderBtnMouseEntered
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+        confirmOrderBtn.setBackground(new Color(0, 0, 0));
+        confirmOrderBtn.setForeground(new Color(255, 255, 255));
+    }//GEN-LAST:event_confirmOrderBtnMouseEntered
+
+    private void confirmOrderBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_confirmOrderBtnMouseExited
+        // TODO add your handling code here:
+        confirmOrderBtn.setBackground(new Color(255, 255, 255));
+        confirmOrderBtn.setForeground(new Color(0, 0, 0));
+    }//GEN-LAST:event_confirmOrderBtnMouseExited
+
+    private void confirmOrderBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmOrderBtnActionPerformed
+        // TODO add your handling code here:
+        String selectedValue =this.discountTypes.getSelectedItem().toString();
+        this.currentOrder.confirmOrder();
+        String lineToFile = this.carName.getText() 
+                            + "," + this.carCategory.getText() 
+                            + "," + this.carMfr.getText()  
+                            + "," + this.deliveryType.getText()  
+                            + "," + this.orderCost.getText() 
+                            + "," + this.shippingCost.getText()
+                            + "," + this.discountTypes.getSelectedItem().toString()
+                            + "," + this.discount.getText()
+                            + "," + this.finalOrderCost.getText();
+        GeneralFileUtil.writeFile(ORDERS_FILE_NAME, lineToFile, false);
+        JOptionPane.showMessageDialog(this, "Order Confirmed Successfully");
+        this.mainFrameRef.getMainSplitPanel().setRightComponent(OrderHistory.getInstance());
+        this.discountTypes.setSelectedItem(0);
+    }//GEN-LAST:event_confirmOrderBtnActionPerformed
+
+    private void discountTypesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_discountTypesActionPerformed
+        // TODO add your handling code here:
+        String selectedValue =this.discountTypes.getSelectedItem().toString();
+        System.out.println("setting using strat: "+ OfferStrategy.getOfferStrategyType(selectedValue));
+        this.currentOrder.setUsingStrategy(OfferStrategy.getOfferStrategyType(selectedValue));
+        System.out.println("Discount value: "+  this.currentOrder.runStrategy());
+        this.discount.setText(Double.toString(this.currentOrder.getOfferDiscount()));
+        this.finalOrderCost.setText(Double.toString(this.currentOrder.getTotal()));
+    }//GEN-LAST:event_discountTypesActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel carCategory;
+    private javax.swing.JLabel carMfr;
+    private javax.swing.JLabel carName;
+    private javax.swing.JButton confirmOrderBtn;
+    private javax.swing.JLabel deliveryType;
+    private javax.swing.JLabel discount;
+    private javax.swing.JComboBox<String> discountTypes;
+    private javax.swing.JLabel finalOrderCost;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel orderCost;
+    private javax.swing.JLabel shippingCost;
     // End of variables declaration//GEN-END:variables
+
+    void setActiveCar(CarAPI selectedCar) {
+        System.out.println("In setActiveCar: "+ selectedCar.toString());
+        this.selectedCar= selectedCar;
+    }
+
+    void setActiveOrder(CarOrder currentOrder) {
+        System.out.println("In setActiveOrder: "+ currentOrder.toString());
+        this.currentOrder= currentOrder;
+    }
+
+    void setLabelValues() {
+        int carId = this.selectedCar.getCarId();
+        CarAPI sCar= null;
+        for(CarAPI car:AddCarsPanel.getInstance().getCarList()){
+            if(car.getCarId() == carId){
+                sCar=car;
+            }
+        }
+        this.carName.setText(sCar.getCarName());
+        this.carCategory.setText(sCar.getCarCategory().toString());
+        String m= sCar.getCarManufacturer().toString();
+        this.carMfr.setText(m);
+        this.deliveryType.setText(this.currentOrder.getCarDeliveryType().toString());
+        if(this.currentOrder.getCarDeliveryType() == CarDeliveryType.Delivery){
+            this.shippingCost.setText(Double.toString(this.currentOrder.getDeliveryCost()));
+        }else{
+            this.currentOrder.setDeliveryCost(0.0);
+            this.shippingCost.setText(Double.toString(this.currentOrder.getDeliveryCost()));
+        }
+        this.discount.setText("Select Discount strategy above!");
+        this.orderCost.setText(Double.toString(this.currentOrder.getTotal()));
+        this.finalOrderCost.setText("");
+    }
+    
+    void setMainFrame(MainFrame aThis) {
+        this.mainFrameRef = aThis;
+    }
 }

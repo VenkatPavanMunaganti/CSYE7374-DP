@@ -6,5 +6,4 @@ public interface CarDeliveryStateAPI {
     void carDeliveryStatus_state();
 
     void carDelivered_state();
-
 }
